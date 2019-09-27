@@ -11,6 +11,9 @@
 #include <streambuf>
 #include <cmath>
 #include <chrono>
+#include <random>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 
 #endif // GALVININKAS_H_INCLUDED

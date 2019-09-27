@@ -1,6 +1,7 @@
 #include "galvininkas.h"
 #include "2dalis.cpp"
 #include "3dalis.cpp"
+#include "4dalis.cpp"
 
 std::string Validacija(std::string b)
 {
@@ -143,6 +144,7 @@ int main()
 
     antra_dalis();
     trecia_dalis();
+    ketvirta_dalis();
 
 
 return 0;

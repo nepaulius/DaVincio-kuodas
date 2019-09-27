@@ -82,8 +82,12 @@ void trecia_dalis()
     int sutapimas=0;
     std::string tekstas_1;
     std::string tekstas_2;
+    int kiek;
 
-    for(int a=0;a<10;a++)
+    std::cout<<"Iveskite kiek poru, kuriu 5 skirtingi simboliai : "<<std::endl;
+    std::cin>>kiek;
+
+    for(int a=0;a<kiek;a++)
     {
         for(unsigned int i = 0; i < 5; ++i)
         {
