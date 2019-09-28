@@ -1,7 +1,7 @@
 #include "galvininkas.h"
 
 
-char genRandom()
+char genRandom_raides()
 {
     char simboliai[] ="0123456789!@#$%^&*ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
@@ -22,10 +22,11 @@ char genRandom()
 
     return simboliai[z % ilgis];
 }
+
 std::string kardinalus_pokyciai_2(std::string tekstas)
 {
 
-    std::string pagrindas="!!!!!!!!!!!!!!!!!!!!!!!!";
+     std::string pagrindas="!!!!!!!!!!!!!!!!!!!!!!!!";
     long long int raideliuSriuba=0;
 
 
@@ -33,9 +34,6 @@ std::string kardinalus_pokyciai_2(std::string tekstas)
     {
         raideliuSriuba=raideliuSriuba+(int(tekstas[i])*(i+1));
     }
-
-     if(raideliuSriuba==0)
-            raideliuSriuba=1;
 
     std::string tarpinis=std::to_string(tekstas.size())+std::to_string(raideliuSriuba);
 
@@ -60,20 +58,35 @@ std::string kardinalus_pokyciai_2(std::string tekstas)
                     int pridedam=int(geras[k])+geras[k+1]%geras.size();
                     char a=pridedam;
                     geras[k]=a;
+
                 }
            }
         else if(suminis[j]=='0')
-        {
+           {
             for(int k=geras.size()/2+1;k<geras.size();k++)
-            {
-                int pridedam2=int(geras[k])-geras[k-1]%geras.size();
-                char a2=pridedam2;
-                geras[k]=a2;
+                {
+                    int pridedam2=int(geras[k])-geras[k-1]%geras.size();
+                    char a2=pridedam2;
+                    geras[k]=a2;
+                }
             }
-        }
     }
-    return geras;
+
+    std::stringstream ss;
+    std::string hashas;
+    int16_t vertimas;
+
+    for(int j=0;j<geras.size();j++)
+    {
+        vertimas=int(geras[j]);
+        ss <<std::setfill ('0') << std::setw(sizeof(int))<< std::hex << vertimas;
+        hashas=ss.str();
+    }
+
+     return hashas;
+
 }
+
 
 void trecia_dalis()
 {
@@ -91,9 +104,10 @@ void trecia_dalis()
     {
         for(unsigned int i = 0; i < 5; ++i)
         {
-            tekstas_1 += genRandom();
-            tekstas_2+= genRandom();
+            tekstas_1 += genRandom_raides();
+            tekstas_2+= genRandom_raides();
         }
+
 
     std::string kodas_1=kardinalus_pokyciai_2(tekstas_1);
     std::string kodas_2=kardinalus_pokyciai_2(tekstas_2);

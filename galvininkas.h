@@ -15,5 +15,6 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <stdint.h>
 
 #endif // GALVININKAS_H_INCLUDED

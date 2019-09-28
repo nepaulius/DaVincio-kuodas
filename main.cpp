@@ -85,9 +85,6 @@ std::string kardinalus_pokyciai(std::string tekstas)
         raideliuSriuba=raideliuSriuba+(int(tekstas[i])*(i+1));
     }
 
-     if(raideliuSriuba==0)
-            raideliuSriuba=1;
-
     std::string tarpinis=std::to_string(tekstas.size())+std::to_string(raideliuSriuba);
 
     pagrindas.erase(0,tarpinis.size());
@@ -124,7 +121,19 @@ std::string kardinalus_pokyciai(std::string tekstas)
                 }
             }
     }
-    return geras;
+
+    std::stringstream ss;
+    std::string hashas;
+    int16_t vertimas;
+
+    for(int j=0;j<geras.size();j++)
+    {
+        vertimas=int(geras[j]);
+        ss <<std::setfill ('0') << std::setw(sizeof(int))<< std::hex << vertimas;
+        hashas=ss.str();
+    }
+
+    return hashas;
 }
 
 
@@ -139,6 +148,7 @@ int main()
     {
          kodas=kardinalus_pokyciai(tekstai[i]);
              std::cout<<"Uzsifruotas tekstas : "<<kodas<<std::endl;
+             std::cout<<"Uzsifruoto teksto ilgis : "<<kodas.size()<<std::endl;
              std::cout<<"-----------------------"<<std::endl;
     }
 

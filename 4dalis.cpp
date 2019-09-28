@@ -1,61 +1,8 @@
 #include "galvininkas.h"
 
 
-std::string kardinalus_pokyciai_3(std::string tekstas)
-{
 
-    std::string pagrindas="!!!!!!!!!!!!!!!!!!!!!!!!";
-    long long int raideliuSriuba=0;
-
-
-    for(int i=0;i<tekstas.size();i++)
-    {
-        raideliuSriuba=raideliuSriuba+(int(tekstas[i])*(i+1));
-    }
-
-     if(raideliuSriuba==0)
-            raideliuSriuba=1;
-
-    std::string tarpinis=std::to_string(tekstas.size())+std::to_string(raideliuSriuba);
-
-    pagrindas.erase(0,tarpinis.size());
-
-    std::string pradzia=std::to_string(tekstas.size());
-
-    std::string geras=pradzia+pagrindas;
-
-    std::string raides=std::to_string(raideliuSriuba);
-
-    geras.insert(geras.size()/2+1,raides);
-
-    std::string suminis = std::bitset< 32 >(raideliuSriuba).to_string();
-
-    for(int j=0;j<suminis.size();j++)
-    {
-        if(suminis[j]=='1')
-           {
-            for(int k=geras.size()/2+1;k>=0;k--)
-                {
-                    int pridedam=int(geras[k])+geras[k+1]%geras.size();
-                    char a=pridedam;
-                    geras[k]=a;
-
-                }
-           }
-        else if(suminis[j]=='0')
-           {
-            for(int k=geras.size()/2+1;k<geras.size();k++)
-                {
-                    int pridedam2=int(geras[k])-geras[k-1]%geras.size();
-                    char a2=pridedam2;
-                    geras[k]=a2;
-                }
-            }
-    }
-
-    return geras;
-}
-char genRandom_1()
+char genRandom_raides_1()
 {
      char simboliai[] =
 "0123456789"
@@ -101,6 +48,7 @@ std::string to_binary(std::string bitas)
 
     return bin;
 }
+
 std::string ilgesnis(std::string pirmas, int atimtis)
 {
 
@@ -123,6 +71,69 @@ int vidurkis(std::vector <int>apsiskaiciuok)
 
     return suma/apsiskaiciuok.size();
 }
+std::string kardinalus_pokyciai_3(std::string tekstas)
+{
+
+   std::string pagrindas="!!!!!!!!!!!!!!!!!!!!!!!!";
+    long long int raideliuSriuba=0;
+
+
+    for(int i=0;i<tekstas.size();i++)
+    {
+        raideliuSriuba=raideliuSriuba+(int(tekstas[i])*(i+1));
+    }
+
+    std::string tarpinis=std::to_string(tekstas.size())+std::to_string(raideliuSriuba);
+
+    pagrindas.erase(0,tarpinis.size());
+
+    std::string pradzia=std::to_string(tekstas.size());
+
+    std::string geras=pradzia+pagrindas;
+
+    std::string raides=std::to_string(raideliuSriuba);
+
+    geras.insert(geras.size()/2+1,raides);
+
+    std::string suminis = std::bitset< 32 >(raideliuSriuba).to_string();
+
+    for(int j=0;j<suminis.size();j++)
+    {
+        if(suminis[j]=='1')
+           {
+            for(int k=geras.size()/2+1;k>=0;k--)
+                {
+                    int pridedam=int(geras[k])+geras[k+1]%geras.size();
+                    char a=pridedam;
+                    geras[k]=a;
+
+                }
+           }
+        else if(suminis[j]=='0')
+           {
+            for(int k=geras.size()/2+1;k<geras.size();k++)
+                {
+                    int pridedam2=int(geras[k])-geras[k-1]%geras.size();
+                    char a2=pridedam2;
+                    geras[k]=a2;
+                }
+            }
+    }
+
+    std::stringstream ss;
+    std::string hashas;
+    int16_t vertimas;
+
+    for(int j=0;j<geras.size();j++)
+    {
+        vertimas=int(geras[j]);
+        ss <<std::setfill ('0') << std::setw(sizeof(int))<< std::hex << vertimas;
+        hashas=ss.str();
+    }
+
+     return hashas;
+
+}
 void ketvirta_dalis()
 {
 
@@ -140,16 +151,17 @@ void ketvirta_dalis()
     {
         for(unsigned int i = 0; i <4 ; ++i)
         {
-            tekstas_1 += genRandom_1();
+            tekstas_1 += genRandom_raides_1();
         }
 
         tekstas_2=tekstas_1;
 
         for(int i=0;i<2;i++)
         {
-            tekstas_1 += genRandom_1();
-            tekstas_2 += genRandom_1();
+            tekstas_1 += genRandom_raides_1();
+            tekstas_2 += genRandom_raides_1();
         }
+
 
         std::string kodas_1=kardinalus_pokyciai_3(tekstas_1);
         std::string kodas_2=kardinalus_pokyciai_3(tekstas_2);
